@@ -9,21 +9,21 @@ def create_score_board:
 #   input: a score board object.
 #   output: the score board with the new player added.
 def add_player(player; score):
-  . + { (player): score }
+  .[player] = score
 ;
 
 # Remove a player from a score board.
 #   input: a score board object.
 #   output: the score board with the player removed, if they exist.
 def remove_player(player):
-  . | del(.[player])
+  del(.[player])
 ;
 
 # Increase a player's score by the given amount.
 #   input: a score board object.
 #   output: the score board with the player's score increased, if they exist.
 def update_score(player; points):
-  .[player] = .[player] + points
+  .[player] += points
 ;
 
 # Apply 100 bonus points to all players on the board.
@@ -37,5 +37,5 @@ def apply_monday_bonus:
 #   input: a score board object.
 #   output: the sum of all scores, or zero for an empty board.
 def total_score:
-  reduce .[] as $point (0; . + $point)
+  [.[] // 0] | add
 ;
