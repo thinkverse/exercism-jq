@@ -12,14 +12,14 @@
   last_week: (nth(-2)),
 
   # Task 2: output count for yesterday in this week's data
-  yesterday: (first | nth(-2)),
+  yesterday: (last | nth(-2)),
   
   # Task 3: output sum of counts for this week's data
-  total: (first | add),
+  total: (last | add),
   
   # Task 4: output number of days with 5 or more birds in this week's data
-  busy_days: (first | map(select(. >= 5)) | length),
+  busy_days: (last | map(select(. >= 5)) | length),
   
   # Task 5: output true if any day this week has zero birds
-  has_day_without_birds: (first | any(. == 0))
+  has_day_without_birds: (last | any(. == 0))
 }
