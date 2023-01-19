@@ -9,15 +9,15 @@ def trim: sub("^\\s+"; "") | sub("\\s+$"; "");
 
 # Task 1. Get message from a log line
 def message:
-  .[(index("]:") + 2):] | trim # implement the body of this function
+  .[(index(":")+1):] | trim # implement the body of this function
 ;
 
 # Task 2. Get log level from a log line
 def log_level:
-  .[1:(index("]:"))] | ascii_downcase # implement the body of this function
+  .[1:(index("]"))] | ascii_downcase # implement the body of this function
 ;
 
 # Task 3. Reformat a log line
 def reformat:
-  [(. | message), " (", (. | log_level), ")"] | add # implement the body of this function
+  "\(message) (\(log_level))" # implement the body of this function
 ;
