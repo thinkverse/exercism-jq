@@ -29,7 +29,7 @@
 (.ingredients | length),
 
 # Task 3: replace `null` with the amount of sugar.
-(.ingredients | map(select(.item == "sugar")) | .[0].amount.quantity),
+(.ingredients | map(select(.item == "sugar") | .amount.quantity) | add),
 
 # Task 4: replace `null` with the mapping of ingredient names with their substitutions
 # (no comma after the last filter)
